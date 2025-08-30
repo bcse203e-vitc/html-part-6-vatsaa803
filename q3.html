@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phone Number Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    input[type="text"] {
+      padding: 8px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .message {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Phone Number Validation</h2>
+  <form>
+    <div class="form-group">
+      <label for="phone">Enter Phone Number:</label><br>
+      <input type="text" id="phone" placeholder="(123) 456-7890 or 123-456-7890" />
+      <div id="msg" class="message"></div>
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const phoneInput = document.getElementById("phone");
+    const message = document.getElementById("msg");
+
+    // Regex for US phone numbers: (123) 456-7890 or 123-456-7890
+    const phoneRegex = /^(\(\d{3}\)\s|\d{3}-)\d{3}-\d{4}$/;
+
+    // Trigger on input event (as user types)
+    phoneInput.addEventListener("input", function () {
+      if (phoneInput.value.trim() === "") {
+        message.textContent = "";
+        message.className = "message";
+      } else if (phoneRegex.test(phoneInput.value)) {
+        message.textContent = "✅ Valid phone number!";
+        message.className = "message success";
+      } else {
+        message.textContent = "❌ Invalid format. Use (123) 456-7890 or 123-456-7890";
+        message.className = "message error";
+      }
+    });
+  </script>
+
+</body>
+</html>
